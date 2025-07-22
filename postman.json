@@ -1,0 +1,240 @@
+{
+    "info": {
+        "_postman_id": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+        "name": "Subscription Platform API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "API documentation for the Subscription Platform"
+    },
+    "item": [
+        {
+            "name": "Subscribe to Website",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"website_id\": 1,\n    \"email\": \"user@example.com\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/subscribe",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "subscribe"]
+                },
+                "description": "Subscribe a user to a website. Returns 201 on success or 422 with validation errors."
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"website_id\": 1,\n    \"email\": \"user@example.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/subscribe",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "subscribe"]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "body": "{\n    \"message\": \"Subscription created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"website_id\": 1,\n        \"email\": \"user@example.com\",\n        \"created_at\": \"2023-10-15T12:00:00.000000Z\",\n        \"updated_at\": \"2023-10-15T12:00:00.000000Z\"\n    }\n}"
+                },
+                {
+                    "name": "Validation Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"website_id\": 1,\n    \"email\": \"user@example.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/subscribe",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "subscribe"]
+                        }
+                    },
+                    "status": "Unprocessable Entity",
+                    "code": 422,
+                    "_postman_previewlanguage": "json",
+                    "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"email\": [\n            \"This email is already subscribed to the website\"\n        ]\n    }\n}"
+                }
+            ]
+        },
+        {
+            "name": "Create Post",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"website_id\": 1,\n    \"title\": \"New Technology Released\",\n    \"description\": \"Details about the new technology...\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/posts",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "posts"]
+                },
+                "description": "Create a new post for a website. This will trigger email notifications to all subscribers."
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"website_id\": 1,\n    \"title\": \"New Technology Released\",\n    \"description\": \"Details about the new technology...\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/posts",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "posts"]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "body": "{\n    \"message\": \"Post created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"website_id\": 1,\n        \"title\": \"New Technology Released\",\n        \"description\": \"Details about the new technology...\",\n        \"created_at\": \"2023-10-15T12:00:00.000000Z\",\n        \"updated_at\": \"2023-10-15T12:00:00.000000Z\"\n    }\n}"
+                },
+                {
+                    "name": "Validation Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"website_id\": 999,\n    \"title\": \"\",\n    \"description\": \"\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/posts",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "posts"]
+                        }
+                    },
+                    "status": "Unprocessable Entity",
+                    "code": 422,
+                    "_postman_previewlanguage": "json",
+                    "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"website_id\": [\n            \"The selected website id is invalid.\"\n        ],\n        \"title\": [\n            \"The title field is required.\"\n        ],\n        \"description\": [\n            \"The description field is required.\"\n        ]\n    }\n}"
+                }
+            ]
+        },
+        {
+            "name": "List Websites",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/websites",
+                    "host": ["{{base_url}}"],
+                    "path": ["api", "websites"]
+                },
+                "description": "Get a list of all websites available in the system"
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/websites",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "websites"]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Tech News\",\n        \"url\": \"https://tech-news.example.com\",\n        \"created_at\": \"2023-10-15T12:00:00.000000Z\",\n        \"updated_at\": \"2023-10-15T12:00:00.000000Z\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Travel Blog\",\n        \"url\": \"https://travel-blog.example.com\",\n        \"created_at\": \"2023-10-15T12:00:00.000000Z\",\n        \"updated_at\": \"2023-10-15T12:00:00.000000Z\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Food Recipes\",\n        \"url\": \"https://food-recipes.example.com\",\n        \"created_at\": \"2023-10-15T12:00:00.000000Z\",\n        \"updated_at\": \"2023-10-15T12:00:00.000000Z\"\n    }\n]"
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000",
+            "description": "Base URL for the API"
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": ["console.log('Setting up environment variables...');"]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "pm.test(\"Status code is 200 or 201\", function () {",
+                    "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                    "});"
+                ]
+            }
+        }
+    ],
+    "description": "## How to Use This Collection\n\n1. Set the `base_url` variable to your application's base URL (default is http://localhost:8000)\n2. The collection includes 3 endpoints:\n   - Subscribe to Website (POST /api/subscribe)\n   - Create Post (POST /api/posts)\n   - List Websites (GET /api/websites)\n\n## Requirements\n\n- PHP 8.0+\n- MySQL 5.7+\n- Redis (for queue processing)\n\n## Setup Instructions\n\n```bash\n# Clone the repository\ngit clone https://github.com/yourusername/subscription-platform.git\ncd subscription-platform\n\n# Install dependencies\ncomposer install\n\n# Configure environment\ncp .env.example .env\nphp artisan key:generate\n\n# Update .env with your database credentials\nDB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=subscription_platform\nDB_USERNAME=root\nDB_PASSWORD=\n\n# Set queue connection\nQUEUE_CONNECTION=redis\n\n# Run migrations and seeders\nphp artisan migrate --seed\n\n# Start the development server\nphp artisan serve\n\n# In a separate terminal, start the queue worker\nphp artisan queue:work\n```\n\n## Key Features\n\n- RESTful API for subscription management\n- Background email processing using queues\n- Prevention of duplicate email notifications\n- Validation for all API inputs\n- Seeded website data for testing\n\n## Scheduled Command\n\nThe email sending command should be scheduled to run periodically:\n\n```bash\n# Add to cron schedule\n* * * * * cd /path-to-project && php artisan schedule:run >> /dev/null 2>&1\n```\n\nIn `app/Console/Kernel.php`:\n\n```php\nprotected function schedule(Schedule $schedule)\n{\n    $schedule->command('subscriptions:send-emails')->everyMinute();\n}\n```\n\n## Testing\n\nUse the provided Postman collection to test all endpoints. The seeded websites have IDs 1, 2, and 3."
+}

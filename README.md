@@ -1,1 +1,4 @@
-# inisev
+-> Install Composer/PHP
+-> Copy env
+->Installl Redis & Redis-PHP (for queuing)
+-> set db & redis
